@@ -3,7 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 gem 'devise'
-
+gem "enum_help"
+gem 'rails-i18n'
+gem "cssbundling-rails"
+gem 'pry-byebug',group: :development
+gem 'kaminari','~> 1.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
 # Use sqlite3 as the database for Active Record

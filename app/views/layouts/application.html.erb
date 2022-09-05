@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -53,7 +53,7 @@
                 </button>
               <% else %>
                 <button class="btn btn-sm btn-outline-secondary" type="button">
-                  <%= link_to "About", about_path, class: "btn btn-outline-dark" %>
+                  <%= link_to "About", public_about_path, class: "btn btn-outline-dark" %>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" type="button">
                   <%= link_to "商品一覧", public_root_path, class: "btn btn-outline-dark" %>

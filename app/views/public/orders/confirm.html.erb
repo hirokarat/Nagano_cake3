@@ -1,0 +1,76 @@
+<div class="container">
+  <h2>注文情報確認</h2>
+  <div class="row">
+    <div class="col-md-9">
+     <% if current_customer.cart_items.present? %>
+     <table class="table table-bordered border-dark">
+      <thead>
+        <tr>
+            <th class="table-active border border-dark">商品名</th>
+            <th class="table-active border border-dark">単価（税込）</th>
+            <th class="table-active border border-dark">数量</th>
+            <th class="table-active border border-dark">小計</th>
+        </tr>
+        </thead>
+        <tbody>
+         <% @cart_items.each do |cart| %>
+          <tr>
+            <td class="border border-dark">
+              <%= image_tag cart.item.image, size: "60x50" %>
+              <%= cart.item.name %>
+            </td>
+            <td class="border border-dark">
+              ¥<%= tax_price(cart.item.price).to_formatted_s(:delimited) %>
+            </td>
+            <td class="border border-dark"><%= cart.amount %></td>
+            <td class="border border-dark">¥<%= sub_price(cart).to_formatted_s(:delimited) %></td>
+          </tr>
+         <% end %>
+        </tbody>
+     </table>
+    </div>
+   <div class="col-md-3">
+     <table class="table table-bordered border-dark">
+        <tr>
+            <th class="table-active border border-dark">送料</th>
+            <td class="border border-dark"><%= @order.postage %></td>
+        </tr>
+        <tr>
+            <th class="table-active border border-dark">商品合計</th>
+            <td class="border border-dark"><%= total_price(@cart_items).to_formatted_s(:delimited) %></td>
+        </tr>
+        <tr>
+            <th class="table-active border border-dark">請求金額</th>
+            <td class="border border-dark"></td>
+        </tr>
+     </table>
+   </div>
+  </div>
+
+
+ <div class="pb-4">
+     <strong>支払方法</strong>
+     <span class="pl-3"><%= @order.payment_method %></span>
+ </div>
+ <div>
+     <strong>お届け先</strong>
+     <span class="pl-3"></span>
+ </div>
+
+
+    <div class ="col-11 text-center mt-5">
+        <%= form_with model:@order, url:public_orders_path, method: :post, local: true do |f| %>
+          <%= f.hidden_field :postal_code %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :payment_method %>
+          <%= f.submit "注文を確定する", class: "btn btn-info" %>
+        <% end %>
+    </div>
+      <% else %>
+          <!-- if カートアイテムがない時 -->
+          <p>お客様のショッピングカートに商品はありませんので注文確定ができません。</p>
+          <p><%= link_to "商品一覧", public_items_path %>から商品をお探し下さい。</p>
+      <% end %>
+   </div>
+</div>

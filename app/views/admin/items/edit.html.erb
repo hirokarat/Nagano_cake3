@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 mx-auto">
-      <h1 class="col-5 alert alert-secondary" role="alert">商品編集</h1>
+      <h1 class="col-6 alert alert-secondary" role="alert">商品編集</h1>
         <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
           <%= render 'form_item', f: f %>
           <%= f.submit '変更を保存', class: "btn btn-success btn-lg pull-right d-block mx-auto" %>

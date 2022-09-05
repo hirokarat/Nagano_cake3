@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="col-2 alert alert-secondary" role="alert">商品詳細</h1>
+  <h1 class="col-3 alert alert-secondary" role="alert">商品詳細</h1>
   <div class="row">
     <div class="mt-4 col-md-5">
       <span>
         <% if @item.image.present? %>
-          <%= image_tag @item.image,size:'300x200' %>
+          <%= image_tag @item.image, size: '320x300'  %>
         <% else %>
-          <%= image_tag 'no_image.png'%>
+          <%= image_tag 'no_image.jpeg',size: '320x300'%>
         <% end %>
       </sapn>
     </div>
@@ -28,8 +28,8 @@
         <p class="col-md-8 admin-item-price"><%= tax_price(@item.price) %>円(<%= @item.price %>円)</p>
       </div>
       <div class="row">
-        <p class="col-md-4">販売ステータス</p>
-          <p class="col-md-8">
+        <p class="col-md-5">販売ステータス</p>
+          <p class="col-md-7">
             <% if @item.is_active == true %>
               <strong><span class="text-success">販売中</span></strong>
             <% elsif @item.is_active == false %>

@@ -11,6 +11,76 @@
   </head>
 
   <body>
-    <%= yield %>
+     <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <span>Nagano Cake</span>
+          </a>
+          <div class="navbar navbar-light bg-light" id="navbarNavDropdown">
+             <div class="container-fluid justify-content-end">
+              <% if customer_signed_in? %>
+                <div class="customer-name me-5 mt-5">
+                  ようこそ、<%= current_customer.last_name %> さん!
+                </div>
+                <button class="btn btn-sm btn-outline-secondary me-5 ms-5" type="button">
+                  <%= link_to "マイページ", public_my_page_path%>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary me-5" type="button">
+                  <%= link_to "商品一覧", public_items_path%>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary me-5" type="button">
+                  <%= link_to "カート",public_cart_items_path %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary me-5" type="button">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                </button>
+              <% elsif admin_signed_in? %>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark" %>
+                </button>
+              <% else %>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "About", about_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "商品一覧", public_root_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-dark" %>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button">
+                  <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-dark" %>
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+      <div id="flash-sentence">
+        <% if flash[:notice] %>
+          <p class="notice"><%= flash[:notice] %></p>
+        <% else %>
+          <p class="alert"><%= flash[:alert] %></p>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -20,20 +20,20 @@
           <div class="navbar navbar-light bg-light" id="navbarNavDropdown">
              <div class="container-fluid justify-content-end">
               <% if customer_signed_in? %>
-                <div class="customer-name me-5 mt-5">
+                <div class="customer-name mr-5 mt-5">
                   ようこそ、<%= current_customer.last_name %> さん!
                 </div>
                 <button class="btn btn-sm btn-outline-secondary me-5 ms-5" type="button">
-                  <%= link_to "マイページ", public_my_page_path%>
+                  <%= link_to "マイページ", public_my_page_path, class: "btn btn-outline-dark"%>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary me-5" type="button">
-                  <%= link_to "商品一覧", public_items_path%>
+                  <%= link_to "商品一覧", public_items_path, class: "btn btn-outline-dark"%>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary me-5" type="button">
-                  <%= link_to "カート",public_cart_items_path %>
+                  <%= link_to "カート",public_cart_items_path, class: "btn btn-outline-dark" %>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary me-5" type="button">
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-dark" %>
                 </button>
               <% elsif admin_signed_in? %>
                 <button class="btn btn-sm btn-outline-secondary" type="button">

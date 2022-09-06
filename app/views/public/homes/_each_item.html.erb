@@ -1,0 +1,15 @@
+<div class="item-container">
+  <%= link_to public_item_path(item.id) do %>
+    <%= image_tag item.get_image, size: '150x100' %>
+  <% end %>
+  <p>
+    <%= link_to public_item_path(item.id), class: "btn-link text-dark" do %>
+      <%= item.name %>
+    <% end %>
+  </p>
+  <% if item.is_active == true %>
+    <p><%= item.price.to_s(:delimited) %> 円</p>
+  <% elsif item.is_active == false %>
+    <p>売り切れ中</p>
+  <% end %>
+</div>

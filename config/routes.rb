@@ -31,13 +31,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     # post '/orders/confirm' => 'orders#confirm'
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
-        get "confirm"
+        post "confirm"
         get "complete"
       end
     end
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :create, :destroy]
-    delete "cart_items/destroy_all" => "cart_items#all_destroy", as: "cart_item_all_destroy"
+    delete "cart_items" => "cart_items#destroy_all", as: "cart_item_destroy_all"
     resources :addresses, only: [:index, :create, :destroy, :edit, :update]
 
     get 'customers/information/edit'=>'customers#edit',as: 'customer_edit'

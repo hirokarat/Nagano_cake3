@@ -1,7 +1,9 @@
 class Public::OrdersController < ApplicationController
   
+  include ApplicationHelper
+  before_action :to_confirm, only: [:show]
   before_action :authenticate_customer!
-
+  
   def new
     @order = Order.new
     @addresses= Address.where(customer: current_customer)
@@ -10,6 +12,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
+    @order.total_payment = billing(@order)
     if params[:order][:select] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -24,26 +27,57 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:shipping_address]
       @order.name = params[:order][:shipping_name]
     end
-    #redirect_to public_orders_confirm_path
+
   end
 
   def complete
   end
 
   def create
+    @cart_items = current_customer.cart_items.all
+    @order = current_customer.orders.new(order_params)
+    if @order.save
+      @cart_items.each do |cart|
+      order_detail = OrderDetail.new
+      order_detail.item_id = cart.item_id
+      order_detail.order_id = @order.id
+      order_detail.amount = cart.amount
+      order_detail.price = cart.item.price
+      order_detail.save
+      end
+      flash[:notice] = "ご注文が確定しました。"
+      redirect_to complete_public_orders_path
+    else
+    @order = Order.new(order_params)
+    render :new
+    end
+
+    if params[:order][:select] == "1"
+      current_customer.addresses.create(address_params)
+    end
+    @cart_items.destroy_all
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = Order.find(params[:id])
+    @item_orders = @order.item_orders
   end
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name,:total_payment)
   end
 
+  def address_params
+    params.require(:order).permit(:postal_code, :address, :name)
+  end
 
-  
+  def to_confirm
+    redirect_to public_items_path if params[:id] == "confirm"
+  end
+
 end

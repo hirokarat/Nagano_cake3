@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-  
+  include ApplicationHelper
   before_action :authenticate_customer!
   before_action :baria_user, only: [:update, :destroy]
   
@@ -54,9 +54,9 @@ class Public::CartItemsController < ApplicationController
   end
   
   def baria_user
-    unless CartItem.find(params[:id]).customer.id.to_i == current_customer.id
-      redirect_to customer_customer_path
-    end
+     unless CartItem.find(params[:id]).customer.id.to_i == current_customer.id
+       redirect_to public_customer_path
+     end
   end
   
   

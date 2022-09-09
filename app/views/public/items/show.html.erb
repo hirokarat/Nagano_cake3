@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="mt-5 col-md-7">
-        <span class="col-md-5 offset-md-5"><%= image_tag @item.image,size:'300x200'%></span>
+        <span class="col-md-5 offset-md-5"><%= image_tag @item.image,size:'300x280'%></span>
     </div>
     <div class="mt-5 col-md-5">
         <p>商品名:<span class="h2 ml-2"><%= @item.name %></span></p>
         <p>商品説明:</p>
         <p><%= @item.introduction %></p>
 
-        <p>税込価格（税抜価格）<strong class="h5"><%= tax_price(@item.price).to_formatted_s(:delimited) %>円</strong>(<%= @item.price.to_formatted_s(:delimited) %>円)</p>
+        <p>税込価格（税抜価格）<strong class="h5"><%= tax_price(@item.price).to_s(:delimited) %>円</strong>(<%= @item.price.to_s(:delimited) %>円)</p>
 
         <%= form_with model: @cart_item, url: public_cart_items_path, local: true do |f| %>
           <%= f.hidden_field :item_id, value: @item.id %>

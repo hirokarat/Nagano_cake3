@@ -20,10 +20,10 @@
               <%= cart.item.name %>
             </td>
             <td class="border border-dark">
-              ¥<%= tax_price(cart.item.price).to_formatted_s(:delimited) %>
+              ¥<%= tax_price(cart.item.price).to_s(:delimited) %>
             </td>
             <td class="border border-dark"><%= cart.amount %></td>
-            <td class="border border-dark">¥<%= sub_price(cart).to_formatted_s(:delimited) %></td>
+            <td class="border border-dark">¥<%= sub_price(cart).to_s(:delimited) %></td>
           </tr>
          <% end %>
         </tbody>
@@ -33,15 +33,15 @@
      <table class="table table-bordered border-dark">
         <tr>
             <th class="table-active border border-dark">送料</th>
-            <td class="border border-dark"><%= @order.postage %></td>
+            <td class="border border-dark"><%= @order.shipping_cost %></td>
         </tr>
         <tr>
             <th class="table-active border border-dark">商品合計</th>
-            <td class="border border-dark"><%= total_price(@cart_items).to_formatted_s(:delimited) %></td>
+            <td class="border border-dark"><%= total_price(@cart_items).to_s(:delimited) %></td>
         </tr>
         <tr>
             <th class="table-active border border-dark">請求金額</th>
-            <td class="border border-dark"></td>
+            <td class="border border-dark"><%= billing(@order).to_s(:delimited) %></td>
         </tr>
      </table>
    </div>
@@ -52,9 +52,9 @@
      <strong>支払方法</strong>
      <span class="pl-3"><%= @order.payment_method %></span>
  </div>
- <div>
-     <strong>お届け先</strong>
-     <span class="pl-3"></span>
+ <div　class="badge badge-primary text-wrap" style="width: 6rem;">
+    <strong>お届け先</strong>
+    <span class="pl-3">〒<%= @order.postal_code%>&nbsp;<%=@order.address%>&nbsp;<%= @order.name%></span>
  </div>
 
 
@@ -64,6 +64,8 @@
           <%= f.hidden_field :address %>
           <%= f.hidden_field :name %>
           <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :shipping_cost %>
+          <%= f.hidden_field :total_payment %>
           <%= f.submit "注文を確定する", class: "btn btn-info" %>
         <% end %>
     </div>

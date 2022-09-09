@@ -1,9 +1,9 @@
 class Public::OrdersController < ApplicationController
-  
+
   include ApplicationHelper
   before_action :to_confirm, only: [:show]
   before_action :authenticate_customer!
-  
+
   def new
     @order = Order.new
     @addresses= Address.where(customer: current_customer)
@@ -36,6 +36,7 @@ class Public::OrdersController < ApplicationController
   def create
     @cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
+
     if @order.save
       @cart_items.each do |cart|
       order_detail = OrderDetail.new
@@ -55,6 +56,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:select] == "1"
       current_customer.addresses.create(address_params)
     end
+
     @cart_items.destroy_all
   end
 
@@ -64,7 +66,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @item_orders = @order.item_orders
+    @order_details = @order.order_details
   end
 
   private

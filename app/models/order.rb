@@ -11,7 +11,7 @@ class Order < ApplicationRecord
     def total_price
         array = []
         self.order_details.each do |order_detail|
-           array << order_detail.tax_price * order_detail.amount
+           array << order_detail.price * order_detail.amount
        end
         array.sum
     end

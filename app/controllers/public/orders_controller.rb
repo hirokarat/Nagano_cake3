@@ -5,8 +5,12 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new
-    @order = Order.new
-    @addresses= Address.where(customer: current_customer)
+    if cart_items = CartItem.where(customer_id: current_customer.id).present?
+      @order = Order.new
+      @addresses= Address.where(customer: current_customer)
+    else
+      redirect_to cart_items_path, notice: "カートに商品が入っておりません"
+    end
   end
 
   def confirm

@@ -18,7 +18,7 @@
     		         <%= l order.created_at, format: :short %>
     		        </td>
     		        <td class="text-left border border-dark">
-    		         <%= order.postal_code %><br>
+    		         〒<%= order.postal_code %><br>
     		         <%= order.address %><br>
     		         <%= order.name %>
     		        </td>
@@ -32,10 +32,10 @@
     		        </td>
 
     		        <td class="border border-dark">
-    		         <%= order.order_status %>
+    		         <%= order.status_i18n %>
     		        </td>
          	      <td class="border border-dark">
-       	         <%= link_to "表示する", public_order_path(order), class: "btn btn-primary" %>
+       	         <%= link_to "表示する", order_path(order), class: "btn btn-primary" %>
        	        </td>
               </tr>
             <% end %>

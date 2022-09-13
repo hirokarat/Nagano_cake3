@@ -5,7 +5,7 @@
   <div class="customer-information mt-5">
     <div class="row" style="margin-left: 0; margin-right: 0;">
       <h4 class="d-flex align-items-center justify-content-center" style="margin-bottom: 0;"><strong>登録情報</strong></h4>
-      <%= link_to "編集する", public_customer_edit_path, class: "btn btn-success col-1 ml-3" %>
+      <%= link_to "編集する", customer_edit_path, class: "btn btn-success col-1 ml-3" %>
     </div>
     <table class="col-6 table table-bordered mt-3 mb-5">
       <tr>
@@ -36,10 +36,10 @@
 
     <div class="row col-2" style="margin-left: 0; margin-right: 0; padding-left: 0;">
       <h4 class="col-6 d-flex align-items-center justify-content-left" style="margin-bottom: 0; padding-left: 0;"><strong>配送先</strong></h4>
-      <%= link_to "一覧を見る",public_addresses_path,  class: "col-6 btn btn-primary" %>
+      <%= link_to "一覧を見る",addresses_path,  class: "col-6 btn btn-primary" %>
       <div class="w-100 mt-4"></div>
       <h4 class="col-6 d-flex align-items-center justify-content-left" style="margin-bottom: 0; padding-left: 0;"><strong>注文履歴</strong></h4>
-      <%= link_to "一覧を見る",public_orders_path, class: "col-6 btn btn-primary" %>
+      <%= link_to "一覧を見る",orders_path, class: "col-6 btn btn-primary" %>
     </div>
 
   </div>

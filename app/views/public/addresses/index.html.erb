@@ -3,7 +3,7 @@
   <h3><mark>配送先登録/一覧</mark></h3>
 
   <div class="new-address row mt-5 pb-5" style="margin-left: 0; margin-right: 0; padding-left: 0;">
-    <%= form_with model: @address, url: public_addresses_path, class: "col-12", local: true do |f| %>
+    <%= form_with model: @address, url: addresses_path, class: "col-12", local: true do |f| %>
       <%= render "public/shared/error_messages_address", model: f.object %>
       <%= f.label "郵便番号(ハイフンなし)", class: "col-2 mr-3 " %>
       <%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "1500041", class: "col-2 form-ph" %>
@@ -34,8 +34,8 @@
             <td class="border border-dark"><%= address.address %></td>
             <td class="border border-dark"><%= address.name %></td>
             <td class="border border-dark text-center">
-              <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success me-2" %>
-              <%= link_to "削除する", public_address_path(address), method: :delete, class: "btn btn-danger ms-2", "data-confirm" => "本当に削除しますか？" %>
+              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success me-2" %>
+              <%= link_to "削除する", address_path(address), method: :delete, class: "btn btn-danger ms-2", "data-confirm" => "本当に削除しますか？" %>
             </td>
           </tr>
         <% end %>

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if resource_or_scope.is_a?(Admin)
       admin_items_path
     else
-      public_my_page_path
+      my_page_path
     end
   end
 
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def customer_shut_out
     unless admin_signed_in?
-      redirect_to public_root_path
+      redirect_to root_path
     end
   end
 

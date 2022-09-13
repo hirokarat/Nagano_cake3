@@ -3,7 +3,7 @@
   <h2><mark>会員情報編集</mark></h2>
 
   <div class="d-flex justify-content-center mt-5" style="">
-    <%= form_with model: @customer, url: public_customer_update_path, class: "col-9", local: true do |f| %>
+    <%= form_with model: @customer, url: customer_update_path, class: "col-9", local: true do |f| %>
       <%= render "public/shared/error_messages_customer_edit", model: f.object %>
       
       <div>
@@ -39,8 +39,8 @@
       </div>
       
       <div class="actions mt-5 mx-auto" style="width:500px;">
-        <%= f.submit "編集内容を保存", class: "btn btn-success me-5" %>
-        <%= link_to "退会する",public_customer_unsubscribe_path, class: "btn btn-danger ms-5" %>
+        <%= f.submit "編集内容を保存", class: "btn btn-success mr-5" %>
+        <%= link_to "退会する",customer_unsubscribe_path, class: "btn btn-danger ml-5" %>
       </div>
     <% end %>
   </div>

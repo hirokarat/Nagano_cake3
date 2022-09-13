@@ -1,5 +1,5 @@
 <div class="container">
-<h2>注文履歴詳細</h2>
+<h2><mark>注文履歴詳細</mark></h2>
  <div class="row mt-5">
     <div class="col-md-8">
       <h4>注文情報</h4>
@@ -19,11 +19,11 @@
               </tr>
               <tr>
               　<th class="info border border-dark table-active">支払方法</th>
-                <td class="text-left border border-dark"><%= @order.payment_method %></td>
+                <td class="text-left border border-dark"><%= @order.payment_method_i18n %></td>
               </tr>
               <tr>
                 <th class="info border border-dark table-active">ステータス</th>
-                <td class="text-left border border-dark"><%= @order.order_status %></td>
+                <td class="text-left border border-dark"><%= @order.status_i18n %></td>
               </tr>
           </tbody>
         </table>

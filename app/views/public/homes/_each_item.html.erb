@@ -1,9 +1,9 @@
 <div class="item-container">
-  <%= link_to public_item_path(item.id) do %>
+  <%= link_to item_path(item.id) do %>
     <%= image_tag item.get_image, size: '150x100' %>
   <% end %>
   <p>
-    <%= link_to public_item_path(item.id), class: "btn-link text-dark" do %>
+    <%= link_to item_path(item.id), class: "btn-link text-dark" do %>
       <%= item.name %>
     <% end %>
   </p>

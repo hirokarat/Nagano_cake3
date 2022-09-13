@@ -47,7 +47,7 @@ class Public::OrdersController < ApplicationController
       order_detail.save
       end
       flash[:notice] = "ご注文が確定しました。"
-      redirect_to complete_public_orders_path
+      redirect_to complete_orders_path
     else
     @order = Order.new(order_params)
     render :new
@@ -79,7 +79,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def to_confirm
-    redirect_to public_items_path if params[:id] == "confirm"
+    redirect_to items_path if params[:id] == "confirm"
   end
 
 end

@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
-  
+
   before_action :authenticate_customer!
- 
+
   def index
     @address = Address.new
     @customer=current_customer
@@ -14,7 +14,7 @@ class Public::AddressesController < ApplicationController
     @addresses = current_customer.addresses
     if @address.save!
       flash[:notice] = "配送先を登録しました。"
-      redirect_to public_addresses_path
+      redirect_to addresses_path
     else
       render :index
     end
@@ -24,7 +24,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.find(params[:id])
     @address.destroy
     flash[:alert] = "配送先を削除しました。"
-    redirect_to public_addresses_path
+    redirect_to addresses_path
   end
 
   def edit
@@ -33,9 +33,9 @@ class Public::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    if @address.update(deliver_destination_params)
-      flash[:notice] = "配送先情報を変更しました。"
-      redirect_to public_addresses_path
+    if @address.update(address_params)
+    flash[:notice] = "配送先情報を変更しました。"
+      redirect_to addresses_path
     else
       render :edit
     end
@@ -49,10 +49,10 @@ class Public::AddressesController < ApplicationController
 
   def baria_customer
     unless Address.find(params[:id]).customer.id.to_i == current_customer.id
-      redirect_to public_my_page_path
+      redirect_to my_page_path
     end
   end
 
-  
-  
+
+
 end

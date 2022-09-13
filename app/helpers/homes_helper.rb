@@ -1,6 +1,0 @@
-module HomesHelper
-  
-
-  
-  
-end

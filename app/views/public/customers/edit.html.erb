@@ -3,44 +3,44 @@
   <h2><mark>会員情報編集</mark></h2>
 
   <div class="d-flex justify-content-center mt-5" style="">
-    <%= form_with model: @customer, url: customer_update_path, class: "col-9", local: true do |f| %>
+    <%= form_with model: @customer, url: customer_update_path,method: :PATCH, class: "col-9", local: true do |f| %>
       <%= render "public/shared/error_messages_customer_edit", model: f.object %>
-      
+
       <div>
       <%= f.label "名前", class: "col-4" %>
       <%= f.text_field :last_name, autocomplete: "last_name", class: "col-3 me-4" %>
       <%= f.text_field :first_name, autocomplete: "first_name", class: "col-3 ms-4" %>
       </div>
-      
+
       <div class="mt-3">
       <%= f.label "フリガナ", class: "col-4" %>
       <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", class: "col-3 me-4" %>
       <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", class: "col-3 ms-4" %>
       </div>
-      
+
       <div class="mt-3">
       <%= f.label "郵便番号", class: "col-4" %>
       <%= f.text_field :postal_code, autocomplete: "postal_code", class: "col-3"  %>
       </div>
-      
+
       <div class="mt-3">
       <%= f.label "住所", class: "col-4"%>
       <%= f.text_field :address, autocomplete: "address", class: "col-7" %>
       </div>
-      
+
       <div class="mt-3">
       <%= f.label "電話番号", class: "col-4" %>
       <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "col-4" %>
       </div>
-      
+
       <div class="mt-3"></div>
       <%= f.label "メールアドレス", class: "col-4" %>
       <%= f.email_field :email, autocomplete: "email", class: "col-7" %>
       </div>
-      
+
       <div class="actions mt-5 mx-auto" style="width:500px;">
         <%= f.submit "編集内容を保存", class: "btn btn-success mr-5" %>
-        <%= link_to "退会する",customer_unsubscribe_path, class: "btn btn-danger ml-5" %>
+        <%= link_to "退会する",customer_unsubscribe_path, class: "btn btn-danger ml-5"%>
       </div>
     <% end %>
   </div>

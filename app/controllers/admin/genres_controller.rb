@@ -1,7 +1,7 @@
 class Admin::GenresController < ApplicationController
   
   before_action :customer_shut_out
-  
+  before_action :authenticate_admin!
   def index
     @genres=Genre.all
     @genre=Genre.new

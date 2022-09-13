@@ -30,7 +30,7 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_deleted: true)
     reset_session
     flash[:alert] = "退会処理が完了しました。"
-    redirect_to top_path
+    redirect_to root_path
   end
 
   private

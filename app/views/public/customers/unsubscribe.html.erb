@@ -10,6 +10,6 @@
 
   <div class="mt-5">
     <%= link_to "退会しない",my_page_path, class: "btn btn-primary mr-5" %>
-    <%= link_to "退会する",  customer_withdraw_path, method: :patch, class: "btn btn-danger" %>
+    <%= link_to "退会する",  customer_withdraw_path, method: :patch, class: "btn btn-danger" , "data-confirm" => "本当に退会しますか？"%>
   </div>
 </div>

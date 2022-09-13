@@ -1,7 +1,7 @@
 <div class="container">
   <div class="admin-customer-edit pt-5">
 
-  <h4 class="alert alert-secondary" role="alert"><%= @customer.full_name %>さんの会員情報編集</h4>
+  <h4 class="alert alert-secondary col-4" role="alert"><%= @customer.full_name %>さんの会員情報編集</h4>
     <%= form_with(model: @customer, url: admin_customer_path(@customer), local: true) do |f| %>
       <table class="w-100 admin-customer-show">
         <tr class="row pb-3">

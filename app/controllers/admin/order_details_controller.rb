@@ -1,7 +1,6 @@
 class Admin::OrderDetailsController < ApplicationController
   
   before_action :customer_shut_out
-  
   def update
     @order_detail = OrderDetail.find(params[:id])
     @order = @order_detail.order

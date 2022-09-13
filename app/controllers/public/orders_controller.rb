@@ -27,9 +27,9 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     elsif params[:order][:select] == "2"
-      @order.postal_code = params[:order][:shipping_postal_code]
-      @order.address = params[:order][:shipping_address]
-      @order.name = params[:order][:shipping_name]
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
     end
 
   end
